@@ -27,7 +27,7 @@ public class Expense {
     @JoinColumn(name="category_id")
     private Category category;
     @ManyToOne
-    @JoinColumn(name="method_id")
+    @JoinColumn(name="payment_id")
     private PaymentMethod paymentMethod;
 
 }

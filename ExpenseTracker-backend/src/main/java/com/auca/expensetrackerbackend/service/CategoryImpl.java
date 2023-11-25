@@ -2,15 +2,16 @@ package com.auca.expensetrackerbackend.service;
 
 import com.auca.expensetrackerbackend.model.Category;
 import com.auca.expensetrackerbackend.repository.CategoryRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.rmi.RemoteException;
 import java.util.List;
 @Service
+@RequiredArgsConstructor
 public class CategoryImpl implements CategoryService{
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
     @Override
     public Category getCategoryById(Long categoryId) throws RemoteException {
        Category category = categoryRepository.findById(categoryId).orElse(null);
