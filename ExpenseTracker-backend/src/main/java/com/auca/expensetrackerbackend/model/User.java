@@ -14,15 +14,20 @@ import org.hibernate.annotations.NaturalId;
 @NoArgsConstructor
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="user_id")
     private Long id;
+    @Column(name ="firstname")
     private String firstName;
+    @Column(name="lastname")
     private String lastName;
+    @Column(name="username")
     private String username;
     @NaturalId(mutable = true)
+    @Column(name="email")
     private String email;
+    @Column(name="password")
     private String password;
 
 }
