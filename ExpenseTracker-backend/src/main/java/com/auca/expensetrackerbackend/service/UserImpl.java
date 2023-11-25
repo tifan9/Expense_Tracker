@@ -31,6 +31,7 @@ public class UserImpl implements UserService{
         return userRepository.findById(id).map(us->{
             us.setFirstName(user.getFirstName());
             us.setLastName(user.getLastName());
+            us.setUsername(user.getUsername());
             us.setEmail(user.getEmail());
             us.setPassword(user.getPassword());
             return userRepository.save(us);
