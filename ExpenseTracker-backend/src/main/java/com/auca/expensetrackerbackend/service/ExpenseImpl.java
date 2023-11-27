@@ -37,7 +37,6 @@ public class ExpenseImpl implements ExpenseService{
         return expenseRepository.findById(ExpenseId).map(ex->{
                 ex.setDescription(expense.getDescription());
                 ex.setAmount(expense.getAmount());
-                ex.setDate(expense.getDate());
             return expenseRepository.save(expense);
         }).orElse(null);
     }

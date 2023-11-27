@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,7 +20,8 @@ public class Expense {
     private Long expenseId;
     private String description;
     private Double amount;
-    private Date date;
+    private LocalDate currentDate;
+    private LocalDate updatedDate;
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
@@ -27,7 +29,7 @@ public class Expense {
     @JoinColumn(name="category_id")
     private Category category;
     @ManyToOne
-    @JoinColumn(name="payment_id")
-    private PaymentMethod paymentMethod;
+    @JoinColumn(name="account_id")
+    private Account account;
 
 }

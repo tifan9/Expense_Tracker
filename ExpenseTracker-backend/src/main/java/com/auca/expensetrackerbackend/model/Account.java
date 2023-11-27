@@ -7,14 +7,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
-@Table(name = "payment_methods")
-public class PaymentMethod {
+@NoArgsConstructor
+@Table(name = "account")
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paymentId;
-    private String methodName;
+    private Long id;
+    private String name;
+    private String accountNumber;
+    private Double balance;
+    @PrePersist
+    public void setBalance(){this.balance = 0.0; }
+    private Double newBalance;
 }
