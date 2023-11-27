@@ -38,7 +38,7 @@ public class ExpenseController {
     }
     @PostMapping
     public Expense saveExpense(@RequestBody Expense expense) throws RemoteException{
-        return saveExpense(expense);
+        return expenseService.saveExpense(expense);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateExpense(@RequestBody Expense expense, @PathVariable("id") Long ExpenseId){

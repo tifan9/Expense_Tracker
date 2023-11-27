@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/payments")
+@RequestMapping("/account")
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;
