@@ -1,32 +1,35 @@
-import React from 'react';
-// import './sidebar.css';
-import { Link } from "react-router-dom";
-const Sidebar = () => {
-  return (
-    <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            User Management System
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+import React, { useState } from 'react';
+import './sidebar.css';
 
-          <Link className="btn btn-outline-light" to="/adduser">
-            Add User
-          </Link>
-        </div>
-      </nav>
+import { Link, NavLink } from "react-router-dom";
+const Sidebar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <nav>
+    <Link to="/" className="title">
+      Expense Tracker
+    </Link>
+    <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
+      <span></span>
+      <span></span>  
+      <span></span>
     </div>
+    <ul className={menuOpen ? "open" : ""}>
+      <li>
+        <NavLink to="/acount">Wallet</NavLink>
+      </li>
+      <li>
+        <NavLink to="/category">Category</NavLink>
+      </li>
+      <li>
+        <NavLink to="/expense">Expense</NavLink>
+      </li>
+      <li>
+        <NavLink to="/login">Login</NavLink>
+      </li>
+    </ul>
+  </nav>
   );
 };
 
