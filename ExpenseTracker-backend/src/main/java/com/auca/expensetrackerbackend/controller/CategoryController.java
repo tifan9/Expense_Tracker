@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/category")
 @RequiredArgsConstructor
 public class CategoryController {
