@@ -1,24 +1,30 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
- import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
-import Sidebar from './layout/Sidebar'
-import Home from './components/Home'
-import Account from './components/Account'
-import Expense from './components/Expense'
+import 'font-awesome/css/font-awesome.min.css';
+import './assets/css/app.css';
+import DashboardPage from './pages/DashboardPage';
+import TypographyPage from './pages/TypographyPage'
+import LoginPage from './pages/auth/LoginPage'
+import ResetPassword from './pages/auth/ResetPassword';
+import ProfilePage from './pages/profile/ProfilePage';
+import ChangePasswordPage from './pages/profile/ChangePasswordPage';
+import UserPreferencesPage from './pages/profile/UserPreferencesPage'
+import AdminBlankPage from './pages/AdminBlankPage';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+
 function App() {
   return (
-    <div className="App">
-      <Router>
-        {/* <Sidebar /> */}
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/home" element={<Home />} />
-          <Route exact path="/account/:id" element={<Account />} />
-          <Route exact path="/expense/:id" element={<Expense />} />
-        </Routes>
-      </Router>
-    </div>
-  );
+        <Router>
+            <Routes>
+                <Route exact path='/' element={<DashboardPage/>} />
+                <Route exact path='/login' element={<LoginPage/>} />
+                <Route exact path='/reset-password' element={<ResetPassword/>} />
+                <Route exact path='/profile' element={<ProfilePage/>} />
+                <Route exact path='/change-password' element={<ChangePasswordPage/>} />
+                <Route exact path='/preferences' element={<UserPreferencesPage/>} />
+                <Route exact path='/typography' element={<TypographyPage/>} />
+                <Route exact path='/blank-page' element={<AdminBlankPage/>} />
+            </Routes>  
+        </Router>
+    )
 }
 
 export default App;
