@@ -36,7 +36,6 @@ public class ExpenseImpl implements ExpenseService{
     public Expense updateExpense(Expense expense, Long ExpenseId) {
         return expenseRepository.findById(ExpenseId).map(ex->{
                 ex.setDescription(expense.getDescription());
-                ex.setAmount(expense.getAmount());
             return expenseRepository.save(expense);
         }).orElse(null);
     }

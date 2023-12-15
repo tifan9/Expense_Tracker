@@ -23,9 +23,9 @@ public class Expense {
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
-    @ManyToOne
-    @JoinColumn(name="account_id")
-    private Account account;
+//    @ManyToOne
+//    @JoinColumn(name="account_id")
+//    private Account account;
 
     public Expense() {
     }
@@ -34,14 +34,14 @@ public class Expense {
         this.expenseId = expenseId;
     }
 
-    public Expense(Long expenseId, String description, Double amount, LocalDate date, User user, Category category, Account account) {
+    public Expense(Long expenseId, String description, Double amount, LocalDate date, User user, Category category) {
         this.expenseId = expenseId;
         this.description = description;
         this.amount = amount;
         Date = date;
         this.user = user;
         this.category = category;
-        this.account = account;
+//        this.account = account;
     }
 
     public Long getExpenseId() {
@@ -92,13 +92,13 @@ public class Expense {
         this.category = category;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+//    public Account getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
 
     @Override
     public String toString() {
@@ -109,7 +109,7 @@ public class Expense {
                 ", Date=" + Date +
                 ", user=" + user +
                 ", category=" + category +
-                ", account=" + account +
+//                ", account=" + account +
                 '}';
     }
 }
