@@ -68,6 +68,7 @@ const Category = () => {
               placeholder="Enter Category Name"
               value={category}
               onChange={(e) => handleChange(e)}
+              required
             />
           </FormGroup>
           <div className="row">

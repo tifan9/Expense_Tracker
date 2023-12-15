@@ -18,6 +18,7 @@ const Expense = () => {
   });
   const {description, amount, category,date} = formData;
 
+
   
   useEffect(() => {
     const fetchData = async () => {
@@ -126,6 +127,7 @@ const formatDate = (date) => {
                 type="text"
                 value={description}
                 onChange={(e)=>handleChange(e)}
+                required
               />
               <Label for="description">description</Label>
             </FormGroup>
@@ -136,6 +138,7 @@ const formatDate = (date) => {
                 id="amount"
                 value={amount}
                 onChange={(e)=>handleChange(e)}
+                required
               />
               <Label for="amount">Amount</Label>
             </FormGroup>
@@ -146,6 +149,7 @@ const formatDate = (date) => {
                 type="select"
                 value={category}
                 onChange={(e)=>handleChange(e)}
+                required
               >
                 {optionList}
               </Input>
@@ -159,6 +163,7 @@ const formatDate = (date) => {
                 type="date"
                 value={date}
                 onChange={(e)=>handleChange(e)}
+                required
               />
               <Label for="date">Date</Label>
             </FormGroup>
