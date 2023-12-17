@@ -18,6 +18,7 @@ const Expense = () => {
   });
   const {description, amount, category,date} = formData;
 
+// error handling
 
   
   useEffect(() => {
@@ -56,6 +57,10 @@ const formatDate = (date) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (amount < 0) {
+      console.error('Error: Amount must be greater than or equal to 0');
+      return;
+    }
     // Format the date before sending it to the server
     const formattedDate = formatDate(date);
     try {
@@ -74,7 +79,7 @@ const formatDate = (date) => {
       });
   
       if (!response.ok) {
-        // Handle error response, e.g., show an error message to the user
+        // Handle error response
         console.error('Error:', response.status);
         return;
       }

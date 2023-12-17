@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import Search from '../components/Search';
+import AmountSpentPerDayTable from '../components/AmountSpentPerDayTable';
 
 const Home = () => {
   const [expenses, setExpenses] = useState([]);
@@ -160,6 +161,7 @@ const Home = () => {
             breakLinkClassName={'page-link'}
             pageLinkClassName={'page-link'}
         />
+        <AmountSpentPerDayTable expenses={expenses} />
       </div>
     </div>
   );
