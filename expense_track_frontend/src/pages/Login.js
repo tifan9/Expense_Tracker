@@ -5,41 +5,67 @@ import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 
 const Login = () => {
     let navigate = useNavigate();
-    const [credentials, setCredentials] = useState({
+    const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
-    const { email, password } = credentials;
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+    const [errors, setErrors] = useState({});
+    const [valid, setValid] = useState(true);
 
     const handleChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-      };
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-      const loginUser = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setLoading(true);
-    
-        try {
-          // Make a request to your login API endpoint
-          // Replace "http://localhost:8080/login" with your actual endpoint
-          const response = await axios.post("http://localhost:8080/users", credentials);
-          
-          // Assuming your server returns a token on successful login
-          const token = response.data.token;
-    
-          // Store the token in local storage or a secure storage mechanism
-          localStorage.setItem("token", token);
-    
-          // Redirect to a protected route or dashboard
-          navigate("/");
-        } catch (err) {
-          setError("Invalid credentials. Please try again."); // Update with a more informative error message
-        } finally {
-          setLoading(false);
+        let isValid = true;
+        let validationErrors = {};
+
+        if (formData.email === "" || formData.email === null) {
+            isValid = false;
+            validationErrors.email = "Email required;";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            isValid = false;
+            validationErrors.email = "Email is not valid";
         }
-      };
+
+        if (formData.password === "" || formData.password === null) {
+            isValid = false;
+            validationErrors.password = "Password required";
+        }
+
+        axios.get('http://localhost:8080/users', {
+            maxRedirects: 5,  // Automatically follow up to 5 redirects
+        })
+            .then(result => {
+                result.data.map(user => {
+                    if (user.email === formData.email) {
+                        if (user.password === formData.password) {
+                            alert("Login successful");
+                            navigate("/");
+                        } else {
+                            isValid = false;
+                            validationErrors.password = "Wrong password";
+                        }
+                    } else if (formData.email !== "") {
+                        isValid = true;
+                        validationErrors.email = "Wrong Email";
+                    }
+                });
+                setErrors(validationErrors);
+                setValid(isValid);
+            })
+            .catch(error => {
+                if (error.response && error.response.status === 302) {
+                    const newLocation = error.response.headers.location;
+                    // Navigate to the new location or handle it accordingly
+                    navigate(newLocation);
+                } else {
+                    // Handle other errors
+                    console.error("Error:", error);
+                }
+            });
+    };
     return (
         <div className='col-sm-8 py-2 px-5 offset-2 shadow mt-4'>
             <h2
@@ -51,7 +77,13 @@ const Login = () => {
             >
                 Login Here
             </h2>
-            <form onSubmit={(e) => loginUser(e)}>
+            <form onSubmit={(e) => handleSubmit(e)}>
+                {
+                    valid ? <></> : 
+                    <span className='text-danger'>
+                    {errors.email} {errors.password}
+                    </span>
+                }
                 <div className="input-group mb-5">
                     <label
                         className="input-group-text"
@@ -63,7 +95,7 @@ const Login = () => {
                         name="email"
                         id='email'
                         placeholder="Enter Email"
-                        value={email}
+                        value={formData.email}
                         required
                         onChange={(e) => handleChange(e)}
                     />
@@ -79,7 +111,7 @@ const Login = () => {
                         name="password"
                         id='password'
                         placeholder="Enter password"
-                        value={password}
+                        value={formData.password}
                         required
                         onChange={(e) => handleChange(e)}
                     />
