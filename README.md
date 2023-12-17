@@ -1,1 +1,1 @@
-<h2>Expense Tracker web Application</h2>
+<h1>Expense Tracker web Application</h1>
