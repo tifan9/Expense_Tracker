@@ -1,5 +1,5 @@
 <h1>Expense Tracker web Application</h1>
-<h3>Uwase Sophie 24435</3>
+<h3>Uwase Sophie 24435</3><br>
 This is a web app that is used to track expenses on a daily basis and the technologies I used are as follow:
   <p>This App has two parts </p>
     <p> The Backend Parts I used Springboot and Spring Security and JWT</p>
