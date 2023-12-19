@@ -12,3 +12,6 @@ This is a web app that is used to track expenses on a daily basis and the techno
        npm install
 
   After that everything is Settled!!
+Then run it 
+     
+     npm start
